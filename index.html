@@ -3,1211 +3,1053 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vedant Kadlak - Game Developer & Software Designer</title>
+    <title>Vedant Kadlak | AI Engineer</title>
+    <meta
+        name="description"
+        content="Vedant Kadlak builds real-time AI systems, computer vision pipelines, and LLM-powered applications."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet"
+    >
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #06080b;
+            --bg-soft: #0b0f14;
+            --panel: rgba(10, 14, 18, 0.82);
+            --panel-strong: #0d1117;
+            --line: rgba(255, 255, 255, 0.08);
+            --line-soft: rgba(255, 255, 255, 0.05);
+            --text: #f3f5f7;
+            --muted: #9ea7b3;
+            --accent: #00e0c6;
+            --accent-strong: #00f5d4;
+            --accent-soft: rgba(0, 224, 198, 0.12);
+            --danger: #ff5f56;
+            --warn: #ffbd2e;
+            --ok: #27c93f;
+            --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+            --radius: 18px;
+            --radius-sm: 12px;
+            --nav-h: 74px;
         }
 
-        :root {
-            --primary: #000000;
-            --secondary: #333333;
-            --accent: #666666;
-            --dark: #000000;
-            --light: #ffffff;
-            --gray: #888888;
-            --card-bg: #ffffff;
-            --border: #e5e5e5;
-            --gradient: linear-gradient(135deg, #000000, #333333);
-            --text-gradient: linear-gradient(135deg, #000000, #333333);
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background: var(--light);
+            min-height: 100vh;
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 15% 55%, rgba(0, 224, 198, 0.13), transparent 28%),
+                radial-gradient(circle at 85% 20%, rgba(0, 224, 198, 0.08), transparent 18%),
+                linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)),
+                var(--bg);
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section {
-            padding: 80px 0;
-        }
-
-        /* Navigation */
-        nav {
+        body::before {
+            content: "";
             position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 224, 198, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 224, 198, 0.035) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            max-width: 1200px;
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(6, 8, 11, 0.1), rgba(6, 8, 11, 0.45));
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 32px));
             margin: 0 auto;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            background: var(--text-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .mono {
+            font-family: "JetBrains Mono", monospace;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: var(--nav-h);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(18px);
+            background: rgba(6, 8, 11, 0.82);
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--dark);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .mobile-menu-btn span {
-            width: 25px;
-            height: 3px;
-            background: var(--dark);
-            transition: all 0.3s;
-        }
-
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: var(--gradient);
-            color: white;
-            text-align: center;
-            padding: 150px 0 100px;
-            margin-top: 70px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            opacity: 0.8;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: var(--dark);
-            padding: 15px 30px;
-            border: 2px solid white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        /* Skills Section */
-        .skills {
-            background: white;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 50px;
-            background: var(--text-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .skills-grid {
+        .topbar-inner {
+            height: 100%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border: 1px solid var(--border);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .skill-category h3 {
-            color: var(--dark);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .skill-tag {
-            background: var(--light);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--gray);
-            border: 1px solid var(--border);
-        }
-
-        /* Projects Section */
-        .projects {
-            background: var(--light);
-        }
-
-        .project-categories {
-            display: flex;
-            justify-content: center;
+            grid-template-columns: 180px 1fr 180px;
+            align-items: center;
             gap: 20px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
         }
 
-        .category-btn {
-            padding: 10px 25px;
-            border: 2px solid var(--dark);
-            background: white;
-            color: var(--dark);
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 0.04em;
             white-space: nowrap;
         }
 
-        .category-btn.active,
-        .category-btn:hover {
-            background: var(--dark);
-            color: white;
+        .brand::before {
+            content: ">";
+            color: var(--accent-strong);
         }
 
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Exactly 3 cards on larger screens */
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: stretch;
-}
-
-
-
-        .project-card {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* Prevents internal content from spilling out */
-  min-width: 0;  
-}
-
-
-        .project-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 42px;
         }
 
-        .project-image {
-        width: 100%;
-        height: 200px; /* a bit smaller for compact look */
-        overflow: hidden;
+        .nav a {
+            color: var(--muted);
+            font-size: 0.98rem;
+            transition: color 0.2s ease;
         }
 
-        .project-image img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        display: block;
-}
-
-
-        .project-content {
-        padding: 15px 20px;
-        flex-grow: 1; /* makes text area stretch evenly */
-          overflow-wrap: anywhere;   /* add */
-  word-break: break-word; 
+        .nav a:hover,
+        .nav a.active {
+            color: var(--text);
         }
 
-
-        .project-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--dark);
+        .availability {
+            justify-self: end;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            white-space: nowrap;
         }
 
-        .project-tech {
-            color: var(--dark);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            font-weight: 600;
+        .availability::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 12px rgba(0, 224, 198, 0.9);
         }
 
-        .project-description {
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 20px;
+        .menu-btn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text);
         }
 
-        .project-features {
-            list-style: none;
-            margin-bottom: 20px;
+        .hero {
+            padding: 110px 0 72px;
+            min-height: calc(100vh - var(--nav-h));
+            display: flex;
+            align-items: center;
         }
 
-        .project-features li {
-            color: var(--gray);
-            padding: 5px 0;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .project-features li::before {
-            content: "✓";
-            color: var(--dark);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--dark);
-            color: white;
-        }
-
-        .contact-content {
-            text-align: center;
-        }
-
-        .contact-info {
-            max-width: 600px;
+        .hero-inner {
+            max-width: 860px;
             margin: 0 auto;
         }
 
-        .contact-info h3 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 2rem;
+        .init {
+            color: var(--accent);
+            margin-bottom: 22px;
+            font-size: 1.05rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
         }
 
-        .social-links {
+        .hero h1 {
+            font-size: clamp(3.5rem, 9vw, 6.5rem);
+            line-height: 0.95;
+            letter-spacing: -0.06em;
+            margin-bottom: 18px;
+            font-weight: 800;
+        }
+
+        .hero h1 .cursor {
+            color: var(--accent);
+        }
+
+        .hero-copy {
+            font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+            line-height: 1.45;
+            color: #c8d0d8;
+            max-width: 840px;
+        }
+
+        .hero-copy .accent {
+            color: var(--accent);
+        }
+
+        .chip-row {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
             flex-wrap: wrap;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 25px;
-            background: rgba(255,255,255,0.1);
-            border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
-        }
-
-        .social-link:hover {
-            background: white;
-            color: var(--dark);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .social-icon {
-            font-size: 1.2rem;
-        }
-
-        .download-resume {
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            padding: 15px 30px;
-            border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
+            gap: 12px;
             margin-top: 30px;
-            transition: all 0.3s;
         }
 
-        .download-resume:hover {
-            background: white;
-            color: var(--dark);
+        .chip {
+            padding: 10px 14px;
+            border: 1px solid rgba(0, 224, 198, 0.32);
+            border-radius: 8px;
+            background: rgba(0, 224, 198, 0.06);
+            color: var(--accent);
+            font-size: 0.98rem;
+            box-shadow: inset 0 0 0 1px rgba(0, 224, 198, 0.02);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 34px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 150px;
+            padding: 15px 24px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--text);
+            font-weight: 600;
+            transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+        }
+
+        .btn:hover {
             transform: translateY(-2px);
         }
 
-        /* Footer */
-        footer {
-            background: #000000;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
+        .btn-primary {
+            background: linear-gradient(180deg, rgba(0, 224, 198, 0.96), rgba(0, 190, 168, 0.96));
+            color: #03110f;
+            border-color: rgba(0, 224, 198, 0.8);
+            box-shadow: 0 14px 38px rgba(0, 224, 198, 0.18);
         }
 
-        .hidden {
-            display: none;
+        .btn-secondary:hover,
+        .btn-ghost:hover {
+            border-color: rgba(0, 224, 198, 0.35);
+            background: rgba(255, 255, 255, 0.03);
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 15px;
+        .terminal {
+            width: min(640px, 100%);
+            margin-top: 74px;
+            border-radius: 14px;
+            background: linear-gradient(180deg, rgba(15, 18, 23, 0.96), rgba(8, 11, 15, 0.96));
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .terminal-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--line-soft);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red {
+            background: var(--danger);
+        }
+
+        .dot.yellow {
+            background: var(--warn);
+        }
+
+        .dot.green {
+            background: var(--ok);
+        }
+
+        .terminal-title {
+            margin-left: 12px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .terminal-body {
+            padding: 22px 20px 24px;
+            font-size: 0.96rem;
+            line-height: 1.75;
+        }
+
+        .terminal-line {
+            color: #e9eef4;
+        }
+
+        .terminal-line .prompt {
+            color: var(--accent);
+        }
+
+        .terminal-line .cmd {
+            color: #d4dbe4;
+        }
+
+        .terminal-output {
+            color: #eef5ff;
+            margin-left: 20px;
+        }
+
+        .section {
+            padding: 86px 0;
+            border-top: 1px solid var(--line-soft);
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 32px;
+            align-items: start;
+            margin-bottom: 34px;
+        }
+
+        .section-tag {
+            color: var(--accent);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+
+        .section-copy h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 12px;
+        }
+
+        .section-copy p {
+            color: var(--muted);
+            max-width: 760px;
+            font-size: 1.02rem;
+        }
+
+        .about-grid,
+        .skills-grid,
+        .projects-grid,
+        .contact-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .about-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .skills-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .projects-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .contact-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+        }
+
+        .info-card,
+        .skill-card,
+        .project-card,
+        .contact-card {
+            padding: 22px;
+        }
+
+        .info-card .label,
+        .skill-card .label,
+        .project-card .label,
+        .timeline-meta,
+        .contact-card .label {
+            color: var(--accent);
+            font-size: 0.84rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .info-card h3,
+        .skill-card h3,
+        .project-card h3,
+        .timeline h3,
+        .contact-card h3 {
+            margin: 12px 0 10px;
+            font-size: 1.25rem;
+        }
+
+        .info-card p,
+        .skill-card p,
+        .project-card p,
+        .timeline p,
+        .contact-card p,
+        .project-stack,
+        .edu-meta,
+        .footer {
+            color: var(--muted);
+        }
+
+        .timeline {
+            padding: 26px 22px;
+        }
+
+        .timeline-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: start;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .timeline-bullets {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .timeline-bullets li,
+        .project-points li {
+            position: relative;
+            padding-left: 18px;
+            color: #d7dde5;
+        }
+
+        .timeline-bullets li::before,
+        .project-points li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.75em;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translateY(-50%);
+            box-shadow: 0 0 12px rgba(0, 224, 198, 0.7);
+        }
+
+        .skill-tags,
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .skill-tags span,
+        .project-tags span {
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            color: #dce4ed;
+            font-size: 0.9rem;
+        }
+
+        .project-stack {
+            font-size: 0.94rem;
+            margin-bottom: 12px;
+        }
+
+        .project-points {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .project-link {
+            padding: 11px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            transition: border-color 0.22s ease, transform 0.22s ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 224, 198, 0.35);
+        }
+
+        .project-link.primary {
+            color: #021311;
+            background: var(--accent);
+            border-color: rgba(0, 224, 198, 0.8);
+        }
+
+        .education-card {
+            margin-top: 18px;
+            padding: 24px 22px;
+        }
+
+        .edu-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .edu-meta {
+            font-size: 0.96rem;
+        }
+
+        .contact-card:hover,
+        .project-card:hover,
+        .skill-card:hover,
+        .info-card:hover,
+        .timeline:hover {
+            border-color: rgba(0, 224, 198, 0.22);
+        }
+
+        .footer {
+            padding: 34px 0 52px;
+            font-size: 0.95rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 980px) {
+            .topbar-inner {
+                grid-template-columns: 1fr auto auto;
             }
 
-            .section {
-                padding: 60px 0;
-            }
-
-            /* Mobile Navigation */
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
+            .nav {
+                position: absolute;
+                top: calc(var(--nav-h) + 8px);
+                left: 16px;
+                right: 16px;
+                padding: 16px;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: rgba(8, 11, 15, 0.96);
+                box-shadow: var(--shadow);
                 flex-direction: column;
+                gap: 18px;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-8px);
+                transition: opacity 0.2s ease, transform 0.2s ease;
+            }
+
+            .nav.open {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+
+            .availability {
+                display: none;
+            }
+
+            .menu-btn {
+                display: inline-flex;
                 align-items: center;
-                justify-content: flex-start;
-                padding-top: 50px;
-                gap: 40px;
-                transition: left 0.3s ease;
-                border-top: 1px solid var(--border);
-            }
-
-            .nav-links.mobile-active {
-                left: 0;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            /* Hero Section Mobile */
-            .hero {
-                padding: 120px 0 80px;
-                margin-top: 70px;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-                line-height: 1.2;
-                margin-bottom: 15px;
-            }
-            
-            .hero .tagline {
-                font-size: 1rem;
-                margin-bottom: 20px;
-                line-height: 1.4;
-            }
-
-            .hero p {
-                font-size: 1rem;
-                margin: 0 auto 30px;
-                padding: 0 10px;
-            }
-
-            .cta-button {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-            }
-
-            /* Skills Grid Mobile */
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .skill-category {
-                padding: 20px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 30px;
-            }
-
-            /* Projects Mobile */
-            .project-categories {
-                gap: 10px;
-                margin-bottom: 30px;
-            }
-
-            .category-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .project-content {
-                padding: 20px;
-            }
-
-            .project-title {
-                font-size: 1.2rem;
-            }
-
-            .project-tech {
-                font-size: 0.8rem;
-            }
-
-            .project-description {
-                font-size: 0.9rem;
-            }
-
-            /* Contact Mobile */
-            .contact-info h3 {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-            }
-
-            .contact-info p {
-                font-size: 0.95rem;
-                padding: 0 10px;
-            }
-
-            .social-links {
-                gap: 12px;
-                padding: 0 10px;
-            }
-            
-            .social-link {
-                padding: 12px 18px;
-                font-size: 0.85rem;
-                min-width: 120px;
                 justify-content: center;
             }
 
-            .social-icon {
-                font-size: 1rem;
+            .section-head {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
 
-            .download-resume {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-            }
-
-            /* Footer Mobile */
-            footer {
-                padding: 20px 0;
-            }
-
-            footer p {
-                font-size: 0.9rem;
-                padding: 0 15px;
+            .about-grid,
+            .skills-grid,
+            .projects-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* Small Mobile Devices */
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .hero .tagline {
-                font-size: 0.9rem;
-            }
-
-            .hero p {
-                font-size: 0.9rem;
-            }
-
-            .section-title {
-                font-size: 1.7rem;
-            }
-
-            .skill-category {
-                padding: 15px;
-            }
-
-            .project-content {
-                padding: 15px;
-            }
-
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-
-            .social-link {
-                width: 80%;
-                max-width: 250px;
-            }
-        }
-
-        
-
-        /* Tablet Responsiveness */
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero .tagline {
-                font-size: 1.3rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-
-            .social-links {
-                gap: 25px;
-            }
-        }
-
-        /* Large screens */
-        @media (min-width: 1400px) {
+        @media (max-width: 720px) {
             .container {
-                max-width: 1400px;
+                width: min(100% - 20px, 1180px);
             }
 
-            .skills-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .hero {
+                padding: 72px 0 54px;
             }
 
-            .projects-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-
-        /* Animation improvements for mobile */
-        @media (max-width: 768px) {
-            .skill-category:hover,
-            .project-card:hover {
-                transform: translateY(-3px);
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
             }
 
-            .cta-button:hover,
-            .social-link:hover,
-            .download-resume:hover {
-                transform: translateY(-2px);
+            .btn {
+                width: 100%;
+            }
+
+            .terminal {
+                margin-top: 42px;
+            }
+
+            .terminal-body {
+                font-size: 0.88rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Vedant Kadlak</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+    <div class="wrap">
+        <header class="topbar">
+            <div class="container topbar-inner">
+                <a href="#home" class="brand mono">VK.exe</a>
+
+                <nav class="nav" id="navMenu">
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+
+                <div class="availability mono">available</div>
+
+                <button class="menu-btn mono" id="menuBtn" type="button" aria-label="Toggle menu">
+                    menu
+                </button>
             </div>
-        </div>
-    </nav>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="about">
-        <div class="container">
-            <h1>Vedant Kadlak</h1>
-            <div class="tagline">Game Developer • Full-Stack Developer • AI Enthusiast</div>
-            <p>Passionate about building immersive gaming experiences and intelligent software solutions. Creator of multiple indie titles with expertise in Unity 3D, AI integration, and modern web technologies.</p>
-            <a href="#projects" class="cta-button">View My Work</a>
-        </div>
-    </section>
+        <main>
+            <section class="hero" id="home">
+                <div class="container hero-inner">
+                    <div class="init mono">// INIT_SEQUENCE</div>
+                    <h1>Vedant Kadlak<span class="cursor">_</span></h1>
+                    <p class="hero-copy">
+                        AI Engineer building intelligent systems at the intersection of
+                        <span class="accent">real-time computer vision</span>,
+                        <span class="accent">LLM-powered products</span>, and
+                        practical deployment.
+                    </p>
 
-    <!-- Skills Section -->
-    <section class="skills section" id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Game Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Unity 3D</span>
-                        <span class="skill-tag">C#</span>
-                        <span class="skill-tag">HTML5 Canvas</span>
-                        <span class="skill-tag">Pygame</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Physics Systems</span>
-                        <span class="skill-tag">Collision Detection</span>
-                        <span class="skill-tag">Procedural Generation</span>
+                    <div class="chip-row mono">
+                        <span class="chip">Python</span>
+                        <span class="chip">YOLO</span>
+                        <span class="chip">MediaPipe</span>
+                        <span class="chip">TensorRT</span>
+                        <span class="chip">FastAPI</span>
+                        <span class="chip">LLM APIs</span>
+                        <span class="chip">Next.js</span>
+                        <span class="chip">Supabase</span>
                     </div>
-                </div>
-                <div class="skill-category">
-                    <h3>AI & Computer Vision</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MediaPipe</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">CNN</span>
-                        <span class="skill-tag">Pose Detection</span>
-                        <span class="skill-tag">Gesture Recognition</span>
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>AI Tools & Workflow</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">ChatGPT</span>
-                        <span class="skill-tag">Claude</span>
-                        <span class="skill-tag">Gemini</span>
-                        <span class="skill-tag">Perplexity</span>
-                        <span class="skill-tag">Prompt Engineering</span>
-                        <span class="skill-tag">AI-Assisted Development</span>
-                        <span class="skill-tag">AI-Driven Problem Solving</span>
-                        <span class="skill-tag">AI-Enhanced Debugging</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>AI Integration & Automation</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Rapid Prototyping with AI</span>
-                        <span class="skill-tag">AI Asset Generation</span>
-                        <span class="skill-tag">AI Data Curation</span>
-                        <span class="skill-tag">AI Content Creation</span>
-                        <span class="skill-tag">Automation with AI</span>
-                        <span class="skill-tag">AI Workflow Optimization</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Frontend Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">Tailwind CSS</span>
-                        <span class="skill-tag">Responsive Design</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Backend & Data</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Express.js</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Data Analysis</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Blockchain & 3D</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Solidity</span>
-                        <span class="skill-tag">Smart Contracts</span>
-                        <span class="skill-tag">Ethereum</span>
-                        <span class="skill-tag">Blender</span>
-                        <span class="skill-tag">3D Modeling</span>
-                        <span class="skill-tag">Animation</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & Platforms</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">Supabase</span>
-                        <span class="skill-tag">Web Audio API</span>
-                        <span class="skill-tag">Postman</span>
-                        <span class="skill-tag">Performance Optimization</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section class="projects section" id="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            
-            <div class="project-categories">
-                <button class="category-btn active" onclick="showCategory('games')">Game Development</button>
-                <button class="category-btn" onclick="showCategory('software')">Software Projects</button>
-                <button class="category-btn" onclick="showCategory('blender')">3D Art & Animation</button>
-            </div>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#projects">View Projects</a>
+                        <a class="btn btn-secondary" href="mailto:vedantkadlak@gmail.com">Get in Touch</a>
+                        <a class="btn btn-ghost" href="vedant_kadlak_23042026.pdf" download>Resume</a>
+                    </div>
 
-            <!-- Game Development Projects -->
-            <div id="games" class="projects-grid">
-                <div class="project-card">
-                        <div class="project-image">
-                        <img src="images/endlessRunner.png" alt="AI Gesture Controls Demo Screenshot">
+                    <div class="terminal reveal">
+                        <div class="terminal-top">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="terminal-title mono">vedant@portfolio ~ $</span>
                         </div>
-                    <div class="project-content">
-                        <h3 class="project-title">AI-Powered Endless Runner</h3>
-                        <div class="project-tech">Unity 3D • C# • MediaPipe • Computer Vision</div>
-                        <p class="project-description">Revolutionary endless runner game featuring AI-powered gesture recognition that allows players to control their character using real body movements, eliminating the need for traditional controls.</p>
-                        <ul class="project-features">
-                            <li>Real-time pose detection for lane switching and jumping</li>
-                            <li>Procedural 3D cityscape generation with dynamic algorithms</li>
-                            <li>Optimized performance with dynamic object management</li>
-                            <li>MediaPipe integration for seamless gesture recognition</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                        <div class="project-image">
-                        <img src="images/Chaser.png" alt="AI Gesture Controls Demo Screenshot">
+                        <div class="terminal-body mono">
+                            <div class="terminal-line"><span class="prompt">$</span> <span class="cmd">whoami</span></div>
+                            <div class="terminal-output">AI Engineer - Rasayani, Maharashtra</div>
+                            <div class="terminal-line"><span class="prompt">$</span> <span class="cmd">cat focus.txt</span></div>
+                            <div class="terminal-output">Real-time AI Systems - Computer Vision - LLM Applications</div>
+                            <div class="terminal-line"><span class="prompt">$</span> <span class="cmd">grep metrics resume.log</span></div>
+                            <div class="terminal-output">300+ FPS - &lt;20ms latency - 95-99% accuracy - 33 landmarks</div>
+                            <div class="terminal-line"><span class="prompt">$</span> <span class="cmd">ls live_projects/</span></div>
+                            <div class="terminal-output">DecidrLab - FindThis</div>
                         </div>
-                    <div class="project-content">
-                        <h3 class="project-title">ChaserPRO - Survival Game</h3>
-                        <div class="project-tech">JavaScript • HTML5 Canvas • CSS3</div>
-                        <p class="project-description">High-intensity browser-based survival game featuring time manipulation mechanics, rage mode abilities, and teleportation systems designed for maximum engagement and replayability.</p>
-                        <ul class="project-features">
-                            <li>Advanced time manipulation and rage mode mechanics</li>
-                            <li>Custom UI with circular cooldown meters and minimap</li>
-                            <li>Cross-platform controls (desktop WASD + mobile swipe)</li>
-                            <li>Real-time score tracking and performance analytics</li>
-                        </ul>
                     </div>
                 </div>
+            </section>
 
-                <div class="project-card">
-                        <div class="project-image">
-                        <img src="images/Platform.png" alt="AI Gesture Controls Demo Screenshot">
+            <section class="section" id="about">
+                <div class="container">
+                    <div class="section-head">
+                        <div class="section-tag mono">// About</div>
+                        <div class="section-copy">
+                            <h2>Performance first. Product minded.</h2>
+                            <p>
+                                The UI is now intentionally close to the reference vibe: terminal-inspired, centered, dark, neon-accented, and grid-based. The content is still driven by your resume, so the page now sells the strongest version of your current AI profile instead of older mixed portfolio material.
+                            </p>
                         </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Ultimate Platformer - Ninja Awaken</h3>
-                        <div class="project-tech">HTML5 Canvas • Web Audio API • JavaScript</div>
-                        <p class="project-description">Epic platformer adventure featuring 8 handcrafted levels with diverse environments, power-up systems, and adaptive difficulty designed to challenge players of all skill levels.</p>
-                        <ul class="project-features">
-                            <li>8 dynamic levels: Emerald Hills, Crystal Caverns, Ice Palace</li>
-                            <li>Power-up system with Speed Boost, Coin Magnet, Invincibility</li>
-                            <li>Custom mobile touch controls with haptic feedback</li>
-                            <li>Particle effects system for enhanced visual experience</li>
-                        </ul>
+                    </div>
+
+                    <div class="about-grid">
+                        <article class="card info-card reveal">
+                            <div class="label mono">01 / Realtime CV</div>
+                            <h3>Built for fast inference</h3>
+                            <p>Detection, pose tracking, motion capture, and gesture systems designed for live interactive use rather than offline demos.</p>
+                        </article>
+                        <article class="card info-card reveal">
+                            <div class="label mono">02 / LLM Products</div>
+                            <h3>Shipped public AI apps</h3>
+                            <p>Decision systems and visual search products with deployment, payment flow, and production-facing architecture.</p>
+                        </article>
+                        <article class="card info-card reveal">
+                            <div class="label mono">03 / Delivery</div>
+                            <h3>From model to deployment</h3>
+                            <p>Comfortable across backend APIs, model integration, inference optimization, hosting, and final product wiring.</p>
+                        </article>
                     </div>
                 </div>
+            </section>
 
-                <div class="project-card">
-                        <div class="project-image">
-                        <img src="images/naruto.png" alt="AI Gesture Controls Demo Screenshot">
+            <section class="section" id="experience">
+                <div class="container">
+                    <div class="section-head">
+                        <div class="section-tag mono">// Experience</div>
+                        <div class="section-copy">
+                            <h2>Work that already touched production constraints.</h2>
+                            <p>Resume-backed experience focused on latency, performance, and real interaction systems.</p>
                         </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Naruto vs Sasuke - 2D Fighter</h3>
-                        <div class="project-tech">Python • Pygame</div>
-                        <p class="project-description">Classic 2D fighting game built from scratch featuring iconic Naruto characters with custom combat systems, sprite animations, and dynamic battle mechanics.</p>
-                        <ul class="project-features">
-                            <li>Custom combat system with hitboxes and combos</li>
-                            <li>Hand-crafted sprite animations and character movement</li>
-                            <li>Dynamic health bars and special attack systems</li>
-                            <li>Built-from-scratch game loop and event handling</li>
-                        </ul>
                     </div>
-                </div>
-            </div>
 
-            <!-- Software Projects -->
-            <div id="software" class="projects-grid hidden">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/soul.png" alt="AI Gesture Controls Demo Screenshot">
+                    <article class="card timeline reveal">
+                        <div class="timeline-top">
+                            <div>
+                                <div class="timeline-meta mono">Python Developer Intern</div>
+                                <h3>Nilee Games and Future Technologies</h3>
+                                <p>September 2025 to March 2026</p>
+                            </div>
+                            <div class="timeline-meta mono">REAL_TIME_SYSTEMS</div>
                         </div>
-                    <div class="project-content">
-                        <h3 class="project-title">SoulCompass - AI Career Platform</h3>
-                        <div class="project-tech">React • TypeScript • Vite • Tailwind CSS • Machine Learning</div>
-                        <p class="project-description">Intelligent career guidance platform leveraging machine learning algorithms to provide personalized career recommendations based on MBTI personality profiling and user behavior analysis.</p>
-                        <ul class="project-features">
-                            <li>ML-based user profiling with 90% recommendation accuracy</li>
-                            <li>K-means clustering for 16 MBTI personality segmentation</li>
-                            <li>Responsive design tested by 50+ users</li>
-                            <li>Increased user engagement by 45% through actionable insights</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                        <div class="project-image">
-                        <img src="images/skin.png" alt="AI Gesture Controls Demo Screenshot">
+                        <ul class="timeline-bullets">
+                            <li>Built a real-time ball impact detection system using YOLO and TensorRT, achieving 300+ FPS inference.</li>
+                            <li>Trained and fine-tuned a YOLO object detection model with 95-99% accuracy under controlled conditions.</li>
+                            <li>Built a full-body motion capture system with 33 tracked landmarks for Unity avatar mirroring at about 90% accuracy.</li>
+                            <li>Reduced Python-to-Unity communication latency to under 20ms for real-time streaming workflows.</li>
+                            <li>Created a MediaPipe gesture recognition system replacing physical inputs with four reliable game actions.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section" id="projects">
+                <div class="container">
+                    <div class="section-head">
+                        <div class="section-tag mono">// Projects</div>
+                        <div class="section-copy">
+                            <h2>Selected builds from the resume.</h2>
+                            <p>Public products lead the page, then private production systems reinforce the real-time engineering depth behind them.</p>
                         </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Skin Disease Detection System</h3>
-                        <div class="project-tech">TensorFlow • CNN • Image Processing • Python</div>
-                        <p class="project-description">Advanced deep learning system for automated skin disease classification, achieving clinical-grade accuracy through sophisticated image processing and convolutional neural networks.</p>
-                        <ul class="project-features">
-                            <li>90% accuracy in skin disease classification</li>
-                            <li>Processed 1,000+ medical images with data augmentation</li>
-                            <li>Reduced false positives by 15% vs baseline models</li>
-                            <li>Optimized model validation for clinical applications</li>
-                        </ul>
+                    </div>
+
+                    <div class="projects-grid">
+                        <article class="card project-card reveal">
+                            <div class="label mono">LIVE_PRODUCT</div>
+                            <h3>DecidrLab</h3>
+                            <div class="project-stack">Next.js 14 | Supabase | LLM APIs | Razorpay | Vercel</div>
+                            <p>AI decision-making platform built around EV scoring, dynamic decision trees, and a GPT-powered quick mode for faster user decisions.</p>
+                            <ul class="project-points">
+                                <li>Built the full-stack product flow including auth, data layer, backend logic, and payments.</li>
+                                <li>Implemented AI quick mode for real-time decision support.</li>
+                                <li>Designed a Pro subscription flow with production deployment.</li>
+                            </ul>
+                            <div class="project-actions">
+                                <a class="project-link primary" href="https://decidrlab.in" target="_blank" rel="noopener noreferrer">Live Site</a>
+                                <a class="project-link" href="https://github.com/VedantKadlaKK/decidrlab" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </article>
+
+                        <article class="card project-card reveal">
+                            <div class="label mono">LIVE_PRODUCT</div>
+                            <h3>FindThis</h3>
+                            <div class="project-stack">Python | Flask | Groq VLM | Llama 4 Scout Vision | Render</div>
+                            <p>AI visual product search engine that identifies products from images and returns purchase links using multimodal inference and matching logic.</p>
+                            <ul class="project-points">
+                                <li>Integrated Groq VLM and Llama 4 Scout Vision for image understanding.</li>
+                                <li>Combined model output with visual similarity matching for stronger results.</li>
+                                <li>Enabled live camera input and deployed it publicly on Render.</li>
+                            </ul>
+                            <div class="project-actions">
+                                <a class="project-link primary" href="https://find-this.onrender.com" target="_blank" rel="noopener noreferrer">Live Site</a>
+                                <a class="project-link" href="https://github.com/VedantKadlaKK/findthis" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </article>
+
+                        <article class="card project-card reveal">
+                            <div class="label mono">PRIVATE_SYSTEM</div>
+                            <h3>Ball Impact Detection System</h3>
+                            <div class="project-stack">Python | YOLO | TensorRT | OpenCV</div>
+                            <p>Sports detection pipeline optimized for speed-critical environments where inference throughput and reliability were both essential.</p>
+                            <ul class="project-points">
+                                <li>Reached 300+ FPS through TensorRT optimization.</li>
+                                <li>Fine-tuned the detector to 95-99% accuracy under controlled conditions.</li>
+                                <li>Designed for live usage, not just model benchmarking.</li>
+                            </ul>
+                        </article>
+
+                        <article class="card project-card reveal">
+                            <div class="label mono">PRIVATE_SYSTEM</div>
+                            <h3>Full-Body Motion Capture</h3>
+                            <div class="project-stack">Python | MediaPipe | Unity | Real-time Streaming</div>
+                            <p>Live motion tracking system that captured 33 body landmarks and streamed them into Unity for responsive avatar mirroring.</p>
+                            <ul class="project-points">
+                                <li>Reached about 90% movement accuracy for tracked motion.</li>
+                                <li>Lowered Python-to-Unity latency to under 20ms.</li>
+                                <li>Turned pose estimation into a practical interaction layer.</li>
+                            </ul>
+                        </article>
                     </div>
                 </div>
+            </section>
 
-                <div class="project-card">
-                        <div class="project-image">
-                        <img src="images/dash.png" alt="AI Gesture Controls Demo Screenshot">
+            <section class="section" id="skills">
+                <div class="container">
+                    <div class="section-head">
+                        <div class="section-tag mono">// Skills</div>
+                        <div class="section-copy">
+                            <h2>The stack behind the work.</h2>
+                            <p>Grouped directly from the resume, but presented in the same system-style language as the rest of the interface.</p>
                         </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Amazon Product Analytics</h3>
-                        <div class="project-tech">Python • BeautifulSoup • Supabase • Power BI</div>
-                        <p class="project-description">Comprehensive e-commerce analytics platform that scrapes and analyzes Amazon marketplace data to provide actionable business insights and improve conversion rates.</p>
-                        <ul class="project-features">
-                            <li>Scraped 5,000+ product listings across multiple categories</li>
-                            <li>Automated ETL pipeline for daily price fluctuation tracking</li>
-                            <li>Power BI dashboard with 95% data accuracy</li>
-                            <li>Delivered 35% increase in affiliate conversion rates</li>
-                        </ul>
                     </div>
-                </div>
 
-                <div class="project-card">
-                        <div class="project-image">
-                        <img src="images/block.png" alt="AI Gesture Controls Demo Screenshot">
+                    <div class="skills-grid">
+                        <article class="card skill-card reveal">
+                            <div class="label mono">LANGUAGES</div>
+                            <h3>Core development stack</h3>
+                            <p>Python, JavaScript, TypeScript, and SQL for application logic, AI integration, and shipping full products.</p>
+                            <div class="skill-tags">
+                                <span>Python</span>
+                                <span>JavaScript</span>
+                                <span>TypeScript</span>
+                                <span>SQL</span>
+                            </div>
+                        </article>
+
+                        <article class="card skill-card reveal">
+                            <div class="label mono">AI_ML</div>
+                            <h3>Realtime and multimodal tooling</h3>
+                            <p>Computer vision, acceleration, and AI APIs for real-time systems and model-driven interfaces.</p>
+                            <div class="skill-tags">
+                                <span>YOLO</span>
+                                <span>OpenCV</span>
+                                <span>MediaPipe</span>
+                                <span>TensorFlow</span>
+                                <span>TensorRT</span>
+                                <span>VLMs</span>
+                                <span>LLM APIs</span>
+                            </div>
+                        </article>
+
+                        <article class="card skill-card reveal">
+                            <div class="label mono">BACKEND</div>
+                            <h3>Delivery and system wiring</h3>
+                            <p>Backend services and communication layers for deploying AI features into working applications.</p>
+                            <div class="skill-tags">
+                                <span>FastAPI</span>
+                                <span>Flask</span>
+                                <span>REST APIs</span>
+                                <span>WebSockets</span>
+                            </div>
+                        </article>
+
+                        <article class="card skill-card reveal">
+                            <div class="label mono">FRONTEND_DEVOPS</div>
+                            <h3>Product and deployment stack</h3>
+                            <p>Frontend systems and hosting workflow used across shipped portfolio projects.</p>
+                            <div class="skill-tags">
+                                <span>React</span>
+                                <span>Next.js</span>
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>Git</span>
+                                <span>CI/CD</span>
+                                <span>Vercel</span>
+                                <span>Render</span>
+                                <span>Supabase</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <article class="card education-card reveal">
+                        <div class="edu-top">
+                            <div>
+                                <div class="label mono">EDUCATION</div>
+                                <h3>B.E. Computer Engineering</h3>
+                                <div class="edu-meta">University of Mumbai | 2021-2025 | CGPA 7.5</div>
+                            </div>
+                            <div class="timeline-meta mono">CERTS_AND_AWARDS</div>
                         </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Agriculture Blockchain Platform</h3>
-                        <div class="project-tech">Solidity • Truffle • Metamask • Ganache</div>
-                        <p class="project-description">Decentralized agricultural marketplace eliminating middleman costs through smart contracts, enabling direct farmer-to-customer transactions with transparent pricing and certification.</p>
-                        <ul class="project-features">
-                            <li>Eliminated 40% middleman costs through direct transactions</li>
-                            <li>5+ deployed smart contracts for secure payments</li>
-                            <li>99.9% transaction success rate with gas optimization</li>
-                            <li>Secure crop certification and quality assurance system</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Blender Projects -->
-            <div id="blender" class="projects-grid hidden">
-                <!-- Miniature Room Scene -->
-                <div class="project-card">
-                        <div class="project-image">
-                        <img src="images/minihome.png" alt="AI Gesture Controls Demo Screenshot">
+                        <div class="project-tags">
+                            <span>Advanced Python</span>
+                            <span>Machine Learning Fundamentals</span>
+                            <span>Viksit Bharat Young Leaders Dialogue 2025</span>
+                            <span>Winner and Runner-up | Python ML Competitions 2022-2024</span>
                         </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Stylized Interior 3D Scene</h3>
-                        <div class="project-tech">Blender • Low-Poly Modeling • Cycles Rendering</div>
-                        <p class="project-description">A cozy, stylized miniature bedroom created in Blender, showcasing low-poly modeling, vibrant materials, and clean lighting suitable for mobile games and interactive apps.</p>
-                        <ul class="project-features">
-                            <li>Low-poly interior modeling with optimized topology</li>
-                            <li>Custom props like bed, lamp, books, and shelves</li>
-                            <li>Stylized color palette with soft global illumination</li>
-                            <li>Game-ready asset approach</li>
-                        </ul>
-                    </div>
+                    </article>
                 </div>
+            </section>
 
-                <!-- Car Render -->
-                <div class="project-card">
-                        <div class="project-image">
-                        <img src="images/ucarrred.png" alt="AI Gesture Controls Demo Screenshot">
+            <section class="section" id="contact">
+                <div class="container">
+                    <div class="section-head">
+                        <div class="section-tag mono">// Contact</div>
+                        <div class="section-copy">
+                            <h2>Open for the next serious build.</h2>
+                            <p>Available for full-time roles and freelance work in computer vision, AI/ML engineering, and LLM application development across remote or on-site opportunities in India.</p>
                         </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Automotive Visualization</h3>
-                        <div class="project-tech">Blender • HDRI Lighting • Automotive Rendering</div>
-                        <p class="project-description">High-quality car visualization render focusing on realistic lighting, reflections, and materials. Created for showcasing vehicle models in marketing and product presentations.</p>
-                        <ul class="project-features">
-                            <li>Detailed 3D car modeling and shading</li>
-                            <li>Studio-style HDRI lighting with reflections</li>
-                            <li>Customizable camera angles for presentation</li>
-                            <li>Photorealistic materials and textures</li>
-                        </ul>
                     </div>
-                </div>
 
-                <!-- Nature Scene -->
-                <div class="project-card">
-                        <div class="project-image">
-                        <img src="images/naturee.png" alt="AI Gesture Controls Demo Screenshot">
-                        </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Stylized Nature Environment</h3>
-                        <div class="project-tech">Blender • Procedural Grass • Environmental Lighting</div>
-                        <p class="project-description">A bright outdoor environment featuring a watchtower and cabin surrounded by procedural grass fields. Designed for environment concept art and game world-building.</p>
-                        <ul class="project-features">
-                            <li>Procedural grass and terrain creation</li>
-                            <li>Low-poly cabin and watchtower modeling</li>
-                            <li>Golden-hour inspired lighting setup</li>
-                            <li>Optimized for real-time applications</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact section" id="contact">
-        <div class="container">
-            <h2 class="section-title" style="color: white; background: none; -webkit-text-fill-color: white;">Let's Connect</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Ready to create something amazing?</h3>
-                    <p>I'm always excited to work on innovative projects and collaborate with talented teams. Whether you're looking for a game developer, full-stack engineer, or AI specialist, let's discuss how we can bring your vision to life.</p>
-                    
-                    <div class="social-links">
-                        <a href="mailto:vedantkadlak@gmail.com" class="social-link">
-                            <span class="social-icon">📧</span>
-                            <span>Email</span>
+                    <div class="contact-grid">
+                        <a class="card contact-card reveal" href="mailto:vedantkadlak@gmail.com">
+                            <div class="label mono">EMAIL</div>
+                            <h3>vedantkadlak@gmail.com</h3>
+                            <p>Best way to reach out for job roles, freelance work, and collaborations.</p>
                         </a>
-                        <a href="tel:+917397820450" class="social-link">
-                            <span class="social-icon">📱</span>
-                            <span>Call</span>
+                        <a class="card contact-card reveal" href="tel:+917397820450">
+                            <div class="label mono">PHONE</div>
+                            <h3>+91 7397820450</h3>
+                            <p>Available for direct discussions, interviews, and quick follow-ups.</p>
                         </a>
-                        <a href="https://wa.me/+917397820450" class="social-link" target="_blank">
-                            <span class="social-icon">💬</span>
-                            <span>WhatsApp</span>
+                        <a class="card contact-card reveal" href="https://github.com/VedantKadlaKK" target="_blank" rel="noopener noreferrer">
+                            <div class="label mono">GITHUB</div>
+                            <h3>VedantKadlaKK</h3>
+                            <p>Public repositories, experiments, and project source links.</p>
                         </a>
-                        <a href="https://www.linkedin.com/in/vedant-kadlak-b6047128b/" class="social-link" target="_blank">
-                            <span class="social-icon">💼</span>
-                            <span>LinkedIn</span>
-                        </a>
-                        <a href="https://instagram.com/vedantkadlakk" class="social-link" target="_blank">
-                            <span class="social-icon">📷</span>
-                            <span>Instagram</span>
+                        <a class="card contact-card reveal" href="vedant_kadlak_23042026.pdf" download>
+                            <div class="label mono">RESUME</div>
+                            <h3>Download PDF</h3>
+                            <p>Local copy included in the project so the portfolio can serve it directly.</p>
                         </a>
                     </div>
 
-                    
+                    <div class="footer mono">vedant_kadlak.sys | realtime_ai | llm_apps | available_for_work</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Vedant Kadlak. All rights reserved. | Crafted with passion for innovation and excellence.</p>
-            <p style="margin-top: 10px; opacity: 0.7;">Game Developer • Software Engineer • AI Enthusiast • 3D Artist</p>
-        </div>
-    </footer>
+            </section>
+        </main>
+    </div>
 
     <script>
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            
-            navLinks.classList.toggle('mobile-active');
-            mobileMenuBtn.classList.toggle('active');
-        }
+        const menuBtn = document.getElementById("menuBtn");
+        const navMenu = document.getElementById("navMenu");
+        const navLinks = Array.from(navMenu.querySelectorAll("a"));
+        const sections = Array.from(document.querySelectorAll("section[id]"));
+        const revealItems = document.querySelectorAll(".reveal");
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                const navLinks = document.querySelector('.nav-links');
-                const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-                
-                navLinks.classList.remove('mobile-active');
-                mobileMenuBtn.classList.remove('active');
+        menuBtn.addEventListener("click", () => {
+            navMenu.classList.toggle("open");
+        });
+
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("open");
             });
         });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const navLinks = document.querySelector('.nav-links');
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const nav = document.querySelector('nav');
-            
-            if (!nav.contains(e.target) && navLinks.classList.contains('mobile-active')) {
-                navLinks.classList.remove('mobile-active');
-                mobileMenuBtn.classList.remove('active');
+        const sectionObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+                    navLinks.forEach((link) => link.classList.remove("active"));
+                    const activeLink = navMenu.querySelector('[href="#' + entry.target.id + '"]');
+                    if (activeLink) {
+                        activeLink.classList.add("active");
+                    }
+                });
+            },
+            {
+                threshold: 0.35,
+                rootMargin: "-15% 0px -45% 0px"
             }
-        });
+        );
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        sections.forEach((section) => sectionObserver.observe(section));
 
-        // Project category switching
-        function showCategory(category) {
-            // Hide all project grids
-            document.getElementById('games').classList.add('hidden');
-            document.getElementById('software').classList.add('hidden');
-            document.getElementById('blender').classList.add('hidden');
-            
-            // Show selected category
-            document.getElementById(category).classList.remove('hidden');
-            
-            // Update active button
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-
-        // Download resume function
-        function downloadResume() {
-            // In a real implementation, this would download the actual resume file
-            alert('Resume download functionality would be implemented here. The resume would be downloaded as a PDF file.');
-        }
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(255, 255, 255, 0.98)';
-                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
-                nav.style.boxShadow = 'none';
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.14,
+                rootMargin: "0px 0px -8% 0px"
             }
-        });
+        );
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Animate elements on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.skill-category, .project-card');
-            animatedElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-        });
-
-        // Add typing effect to hero tagline
-        document.addEventListener('DOMContentLoaded', function() {
-            const tagline = document.querySelector('.hero .tagline');
-            const text = tagline.textContent;
-            tagline.textContent = '';
-            
-            let i = 0;
-            const typeWriter = () => {
-                if (i < text.length) {
-                    tagline.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 100);
-                }
-            };
-            
-            setTimeout(typeWriter, 1000);
-        });
-
-        // Handle touch events for better mobile interaction
-        document.addEventListener('touchstart', function() {}, { passive: true });
-        
-        // Optimize performance on mobile
-        if ('ontouchstart' in window) {
-            document.body.classList.add('mobile');
-        }
-
-        // Handle orientation changes
-        window.addEventListener('orientationchange', function() {
-            setTimeout(function() {
-                window.scrollTo(0, 0);
-            }, 100);
-        });
+        revealItems.forEach((item) => revealObserver.observe(item));
     </script>
 </body>
 </html>
