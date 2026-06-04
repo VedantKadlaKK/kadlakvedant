@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vedant Kadlak | Software Engineer, Vibe Coder, Product Dev</title>
+    <title>Vedant Kadlak | Fintech Software Engineer, Vibe Coder, Product Dev</title>
     <meta
         name="description"
-        content="Vedant Kadlak is a software engineer, vibe coder, product developer, and design-minded builder shipping AI, full-stack, CV, and creative products."
+        content="Vedant Kadlak is a fintech-minded software engineer and product developer shipping AI, full-stack, risk monitoring, ERP, CV, and creative products."
     >
-    <meta property="og:title" content="Vedant Kadlak | Software Engineer, Vibe Coder, Product Dev">
-    <meta property="og:description" content="Vedant Kadlak is a software engineer, vibe coder, product developer, and design-minded builder shipping AI, full-stack, CV, and creative products.">
+    <meta property="og:title" content="Vedant Kadlak | Fintech Software Engineer, Vibe Coder, Product Dev">
+    <meta property="og:description" content="Vedant Kadlak is a fintech-minded software engineer and product developer shipping AI, full-stack, risk monitoring, ERP, CV, and creative products.">
     <meta property="og:image" content="preview.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -514,6 +514,62 @@
             line-height: 1.65;
         }
 
+        .resume-snapshot {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .resume-card {
+            min-height: 230px;
+            border: 1px solid var(--ink);
+            border-radius: 20px;
+            padding: 22px;
+            background: rgba(255, 255, 255, 0.72);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .resume-kicker {
+            color: var(--red);
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .resume-card h3 {
+            margin-top: 16px;
+            font-size: 1.65rem;
+            line-height: 1.04;
+            text-transform: uppercase;
+        }
+
+        .resume-card p,
+        .resume-list {
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 0.94rem;
+            line-height: 1.58;
+        }
+
+        .resume-list {
+            list-style: none;
+        }
+
+        .resume-list li + li {
+            margin-top: 8px;
+        }
+
+        .resume-list li::before {
+            content: "/";
+            margin-right: 8px;
+            color: var(--blue);
+            font-weight: 900;
+        }
+
         .expertise-list {
             border-top: 1px solid var(--ink);
         }
@@ -589,13 +645,40 @@
             display: flex;
             gap: 16px;
             width: max-content;
-            animation: projectRail 34s linear infinite;
+            animation: projectRail 50s linear infinite;
             will-change: transform;
         }
 
         .work-rail:has(.project-panel:hover),
         .work-rail:has(.project-panel:focus-within) {
             animation-play-state: paused;
+        }
+
+        .project-speed {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .speed-btn {
+            min-height: 44px;
+            padding: 11px 18px;
+            border: 1px solid var(--ink);
+            border-radius: 999px;
+            background: var(--ink);
+            color: var(--paper);
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+            user-select: none;
+        }
+
+        .speed-btn:hover,
+        .speed-btn:focus-visible,
+        .speed-btn.is-held {
+            background: var(--blue);
+            color: var(--paper);
+            transform: translateY(-2px);
         }
 
         @keyframes projectRail {
@@ -1026,6 +1109,10 @@
                 display: none;
             }
 
+            .resume-snapshot {
+                grid-template-columns: 1fr;
+            }
+
             .menu-btn {
                 display: inline-grid;
                 place-items: center;
@@ -1288,6 +1375,10 @@
                 animation: none;
             }
 
+            .project-speed {
+                display: none;
+            }
+
             .project-panel {
                 flex-basis: 84vw;
                 width: 84vw;
@@ -1482,6 +1573,10 @@
                 animation: none;
             }
 
+            .project-speed {
+                display: none;
+            }
+
             .reveal {
                 opacity: 1;
                 transform: none;
@@ -1519,10 +1614,10 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div class="hero-copy reveal">
-                    <div class="eyebrow mono">Software Engineer | Vibe Coder | Product Dev</div>
+                    <div class="eyebrow mono">Fintech Software Engineer | Python & Full-Stack | Product Dev</div>
                     <h1>Building the <em>thing</em>, not just the repo.</h1>
                     <p class="hero-sub">
-                        I am Vedant Kadlak: software engineer, product developer, design-minded builder, and project owner. I turn fast ideas into shipped AI, full-stack, computer-vision, and creative products with the taste to make them feel like a brand.
+                        I am Vedant Kadlak: a fintech-minded software engineer, Python and full-stack developer, design-aware builder, and project owner. I turn complex ideas into shipped AI, risk-monitoring, ERP, computer-vision, and creative products with the taste to make them feel like a brand.
                     </p>
                     <div class="hero-actions">
                         <a class="button primary" href="#projects">See the work</a>
@@ -1545,22 +1640,22 @@
 
         <div class="ticker" aria-hidden="true">
             <div class="ticker-track">
-                <span>Software Engineer</span>
+                <span>Fintech Systems</span>
                 <span>Vibe Coder</span>
                 <span>Product Dev</span>
-                <span>Design Systems</span>
+                <span>Risk Monitoring</span>
                 <span>Build Management</span>
                 <span>AI Products</span>
                 <span>Full-Stack</span>
-                <span>Computer Vision</span>
-                <span>Software Engineer</span>
+                <span>Python Backends</span>
+                <span>Fintech Systems</span>
                 <span>Vibe Coder</span>
                 <span>Product Dev</span>
-                <span>Design Systems</span>
+                <span>Risk Monitoring</span>
                 <span>Build Management</span>
                 <span>AI Products</span>
                 <span>Full-Stack</span>
-                <span>Computer Vision</span>
+                <span>Python Backends</span>
             </div>
         </div>
 
@@ -1571,7 +1666,7 @@
                     <div>
                         <h2 class="section-title">A builder with product taste and engineering depth.</h2>
                         <p class="section-copy">
-                            The brand is simple: I can think, design, build, ship, and manage the work. I am not boxed into one lane. I can create the product story, wire the system, polish the interface, and keep the build moving until it is real.
+                            I think through the product, build the system, polish the interface, and keep the work moving until it is real. My strongest lane is full-stack engineering with fintech product sense.
                         </p>
                     </div>
                 </div>
@@ -1580,28 +1675,56 @@
                     <div class="statement reveal">
                         <p>Good software is not only code. It is clarity, flow, speed, judgment, and ownership.</p>
                         <small>
-                            That is the lane I am building in: software engineering plus product development plus design sense plus management discipline.
+                            That is the lane I am building in: software engineering plus fintech product thinking plus design sense plus management discipline.
                         </small>
                     </div>
 
                     <div class="stat-row reveal">
                         <div class="stat">
-                            <strong>100%</strong>
-                            <span>Solo product ownership</span>
+                            <strong>2+</strong>
+                            <span>Years full-stack experience</span>
                         </div>
                         <div class="stat">
-                            <strong>&lt;20</strong>
-                            <span>MS Unity bridge</span>
+                            <strong>150+</strong>
+                            <span>FPS async pipelines</span>
                         </div>
                         <div class="stat">
                             <strong>3</strong>
-                            <span>Live AI products</span>
+                            <span>Fintech and ops builds</span>
                         </div>
                         <div class="stat">
-                            <strong>45</strong>
-                            <span>Top Maharashtra leaders</span>
+                            <strong>2026</strong>
+                            <span>Risk systems focus</span>
                         </div>
                     </div>
+                </div>
+
+                <div class="resume-snapshot reveal">
+                    <article class="resume-card">
+                        <div>
+                            <div class="resume-kicker mono">Resume Signal</div>
+                            <h3>Python Developer Intern</h3>
+                            <p>Nilee Games & Future Technologies, Mumbai. Built real-time processing pipelines, optimized asynchronous Python workflows, and helped integrate computer-vision models into live production environments.</p>
+                        </div>
+                    </article>
+                    <article class="resume-card">
+                        <div>
+                            <div class="resume-kicker mono">Fintech Direction</div>
+                            <h3>Risk-heavy product systems</h3>
+                            <p>Comfortable with financial-risk workflows, LLM reporting, PostgreSQL persistence, RBAC, audit-aware logging, and dashboards where correctness and clarity matter.</p>
+                        </div>
+                    </article>
+                    <article class="resume-card">
+                        <div>
+                            <div class="resume-kicker mono">Core Stack</div>
+                            <h3>Backend to interface</h3>
+                            <ul class="resume-list">
+                                <li>Python, TypeScript, JavaScript, SQL</li>
+                                <li>Tornado, FastAPI, React, Next.js, Vite</li>
+                                <li>PostgreSQL, SQLAlchemy, WebSockets, LLM APIs</li>
+                            </ul>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -1613,7 +1736,7 @@
                     <div>
                         <h2 class="section-title">What I can do <span class="serif">end to end.</span></h2>
                         <p class="section-copy">
-                            Like a service page, but for a software engineer: these are the repeatable capabilities I bring into every serious build.
+                            Practical strengths across backend systems, interfaces, AI workflows, data-heavy products, and launch-ready execution.
                         </p>
                     </div>
                 </div>
@@ -1626,8 +1749,13 @@
                     </article>
                     <article class="expertise-item reveal">
                         <div class="year mono">2026</div>
-                        <h3>Vibe-Coded Velocity</h3>
-                        <p>Fast experimentation with strong judgment: quick prototypes, clean direction, useful AI leverage, and the discipline to turn speed into quality.</p>
+                        <h3>Fintech Systems</h3>
+                        <p>Risk scoring flows, financial dashboards, audit-aware product logic, RBAC, PostgreSQL persistence, and interfaces that make complex money-data workflows easier to trust.</p>
+                    </article>
+                    <article class="expertise-item reveal">
+                        <div class="year mono">2026</div>
+                        <h3>Fast Build Velocity</h3>
+                        <p>Quick prototypes, clean direction, useful AI leverage, and the discipline to turn speed into reliable shipped work.</p>
                     </article>
                     <article class="expertise-item reveal">
                         <div class="year mono">2026</div>
@@ -1648,9 +1776,9 @@
                 <div class="section-head reveal">
                     <div class="section-no mono">(03)</div>
                     <div>
-                        <h2 class="section-title">Selected work, shown like products.</h2>
+                        <h2 class="section-title">Selected work.</h2>
                         <p class="section-copy">
-                            Read it left to right: live products first, then performance systems, then creative tech. Each project is a proof point for what I can own from idea to launch.
+                            Fintech systems, AI products, operational tools, real-time pipelines, and creative tech built with ownership from system logic to user experience.
                         </p>
                     </div>
                 </div>
@@ -1678,7 +1806,58 @@
 
                         <article class="project-panel">
                             <div>
-                                <div class="project-index mono">/ 02 - Vision Product</div>
+                                <div class="project-index mono">/ 02 - Fintech Live System</div>
+                                <h3>R2T2-FIP</h3>
+                                <p>Live fintech platform for financial-data workflows, production deployment, and user-facing access to structured account information.</p>
+                                <div class="project-stack mono">Financial Data Workflows / Product Engineering / Live Deployment</div>
+                                <div class="tag-row">
+                                    <span class="tag">Live</span>
+                                    <span class="tag">Fintech</span>
+                                    <span class="tag">Data Flows</span>
+                                </div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://r2t2-fip.duckdns.org/" target="_blank" rel="noopener noreferrer">Visit</a>
+                            </div>
+                        </article>
+
+                        <article class="project-panel">
+                            <div>
+                                <div class="project-index mono">/ 03 - AI Risk System</div>
+                                <h3>RiskLens</h3>
+                                <p>AI financial-risk monitoring platform with live analytics, risk scoring workflows, LLM-powered reporting, and separated business logic.</p>
+                                <div class="project-stack mono">Tornado / React / TypeScript / PostgreSQL / SQLAlchemy / Groq LLM APIs</div>
+                                <div class="tag-row">
+                                    <span class="tag">Fintech</span>
+                                    <span class="tag">Risk Scoring</span>
+                                    <span class="tag">LLM Reports</span>
+                                </div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/VedantKadlaKK/risklens-ai-monitoring" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </article>
+
+                        <article class="project-panel">
+                            <div>
+                                <div class="project-index mono">/ 04 - Operations System</div>
+                                <h3>Nexora ERP</h3>
+                                <p>Real-time logistics ERP for shipment lifecycles, role-based access control, audit-aware logging, and high-integrity operational data.</p>
+                                <div class="project-stack mono">FastAPI / React / Vite / TypeScript / WebSockets / PostgreSQL</div>
+                                <div class="tag-row">
+                                    <span class="tag">ERP</span>
+                                    <span class="tag">RBAC</span>
+                                    <span class="tag">Realtime</span>
+                                </div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/VedantKadlaKK/nexora-erp" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </article>
+
+                        <article class="project-panel">
+                            <div>
+                                <div class="project-index mono">/ 05 - Vision Product</div>
                                 <h3>FindThis</h3>
                                 <p>Camera-to-product discovery. Point at an object and get relevant buying paths back using vision-language understanding and a simple live flow.</p>
                                 <div class="project-stack mono">Python / Flask / Groq VLM / Llama 4 Scout Vision / Render</div>
@@ -1696,7 +1875,7 @@
 
                     <article class="project-panel">
                         <div>
-                            <div class="project-index mono">/ 03 - Experience Design</div>
+                            <div class="project-index mono">/ 06 - Experience Design</div>
                             <h3>SoulCompass</h3>
                             <p>AI self-discovery and journaling platform focused on tone, product emotion, reflection flows, data model, and full-stack execution.</p>
                             <div class="project-stack mono">Next.js / Supabase / Groq LLM / PostgreSQL / Vercel</div>
@@ -1714,7 +1893,7 @@
 
                     <article class="project-panel">
                         <div>
-                            <div class="project-index mono">/ 04 - Realtime System</div>
+                            <div class="project-index mono">/ 07 - Realtime System</div>
                             <h3>Ball Impact CV</h3>
                             <p>Sports detection pipeline optimized for live inference where throughput, reliability, and speed mattered more than demo polish.</p>
                             <div class="project-stack mono">Python / YOLO / TensorRT / OpenCV</div>
@@ -1727,7 +1906,7 @@
 
                     <article class="project-panel">
                         <div>
-                            <div class="project-index mono">/ 05 - Interaction System</div>
+                            <div class="project-index mono">/ 08 - Interaction System</div>
                             <h3>Motion Capture</h3>
                             <p>Full-body landmark tracking streamed into Unity for responsive avatar mirroring, reducing Python-to-Unity communication latency under 20ms.</p>
                             <div class="project-stack mono">Python / MediaPipe / Unity / Real-time Streaming</div>
@@ -1741,7 +1920,7 @@
 
                     <article class="project-panel">
                         <div>
-                            <div class="project-index mono">/ 06 - Creative Tech</div>
+                            <div class="project-index mono">/ 09 - Creative Tech</div>
                             <h3>AI Runner</h3>
                             <p>Gesture-controlled endless runner connecting computer vision input to gameplay design, feedback loops, and Unity interaction systems.</p>
                             <div class="project-stack mono">Unity 3D / C# / MediaPipe / Computer Vision</div>
@@ -1754,6 +1933,9 @@
                     </article>
                     </div>
                 </div>
+                <div class="project-speed reveal">
+                    <button class="speed-btn mono" id="speedBtn" type="button" aria-controls="projectRail" aria-pressed="false" aria-label="Hold to move project cards three times faster">Hold to speed up 3x</button>
+                </div>
             </div>
         </section>
 
@@ -1761,8 +1943,8 @@
             <div class="quote-text">
                 <span>Idea to interface</span>
                 <span>system to launch</span>
-                <span>software with taste</span>
-                <span>product with motion</span>
+                <span>risk to report</span>
+                <span>product with trust</span>
                 <span>Idea to interface</span>
                 <span>system to launch</span>
             </div>
@@ -1819,7 +2001,7 @@
                     <div class="contact-big reveal">
                         <div class="section-no mono">(05)</div>
                         <h2>Let's build something that looks alive.</h2>
-                        <p>Open to software engineering roles, product builds, AI apps, and design-minded development work.</p>
+                        <p>Open to fintech software engineering roles, product builds, AI apps, full-stack systems, and design-minded development work.</p>
                     </div>
 
                     <div class="contact-links reveal">
@@ -1830,7 +2012,7 @@
                     </div>
                 </div>
 
-                <div class="footer mono">Vedant Kadlak / Software Engineer / Vibe Coder / Product Dev / Design + Management</div>
+                <div class="footer mono">Vedant Kadlak / Fintech Software Engineer / Python + Full-Stack / Vibe Coder / Product Dev</div>
             </div>
         </section>
     </main>
@@ -1842,6 +2024,7 @@
         const sections = Array.from(document.querySelectorAll("section[id]"));
         const revealItems = Array.from(document.querySelectorAll(".reveal"));
         const projectRail = document.getElementById("projectRail");
+        const speedBtn = document.getElementById("speedBtn");
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         function setupProjectRail() {
@@ -1923,6 +2106,32 @@
         );
 
         sections.forEach((section) => sectionObserver.observe(section));
+
+        if (projectRail && speedBtn) {
+            const setSpeedMode = (isSpeeding) => {
+                projectRail.classList.toggle("is-speeding", isSpeeding);
+                speedBtn.classList.toggle("is-held", isSpeeding);
+                speedBtn.setAttribute("aria-pressed", isSpeeding ? "true" : "false");
+                projectRail.getAnimations().forEach((animation) => {
+                    animation.updatePlaybackRate(isSpeeding ? 3 : 1);
+                });
+            };
+
+            speedBtn.addEventListener("pointerdown", (event) => {
+                event.preventDefault();
+                setSpeedMode(true);
+            });
+            speedBtn.addEventListener("pointerup", () => setSpeedMode(false));
+            speedBtn.addEventListener("pointerleave", () => setSpeedMode(false));
+            speedBtn.addEventListener("pointercancel", () => setSpeedMode(false));
+            speedBtn.addEventListener("blur", () => setSpeedMode(false));
+            speedBtn.addEventListener("keydown", (event) => {
+                if (event.key === " " || event.key === "Enter") {
+                    setSpeedMode(true);
+                }
+            });
+            speedBtn.addEventListener("keyup", () => setSpeedMode(false));
+        }
 
         function updateParallax() {
             if (reducedMotion) {
